@@ -6,7 +6,7 @@ public class Vegetable extends Ingredient {
 	private boolean isOrganic;
 
 	public Vegetable() {
-		this("tomato", 5, "units", true);
+		this("tomato", 4, "units", true);
 	}
 
 	public Vegetable(String name, int quantity, String units, boolean isOrganic) {
@@ -15,25 +15,19 @@ public class Vegetable extends Ingredient {
 		setOrganic(isOrganic);
 	}
 
-	public void action() {
-		System.out.println("Chop the " + this.getName() + "s");
-	}
-
-	public void add() {
-		if (isOrganic())
-			System.out.println(this.getQuantity() + " " + this.getUnits() + " of organic " + this.getName());
-		else
-			System.out.println(this.getQuantity() + " " + this.getUnits() + " of " + this.getName());
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+		if(quantity <= 0) {
+			System.out.println("Quantity set to 1");
+			this.quantity = 1;
+		} else{
+			this.quantity = quantity;
+		}
 	}
-
+	
 	public boolean isOrganic() {
 		return isOrganic;
 	}
@@ -42,9 +36,21 @@ public class Vegetable extends Ingredient {
 		this.isOrganic = isOrganic;
 	}
 
+	public void action() {
+		System.out.println("Chop the " + this.getName() + "s");
+	}
+
+	public void add() {
+		if(this.isOrganic) {
+			System.out.println(this.getQuantity() + " " + this.getUnits() + " of organic " + this.getName());
+		} else {
+			System.out.println(this.getQuantity() + " " + this.getUnits() + " of " + this.getName());
+		}
+	}
+	
 	@Override
 	public String toString() {
-		return "name: " + this.getName() + ", quantity: " + this.getQuantity() + " " + this.getUnits() + " organic: " + isOrganic();
+		return super.toString()+ ", quantity: " + this.quantity + ", organic: " + this.isOrganic;
 	}
 
 	@Override
@@ -53,10 +59,9 @@ public class Vegetable extends Ingredient {
 			return true;
 		if (!(obj instanceof Vegetable))
 			return false;
-		if (!(super.equals(obj)))
-			return false;
 		Vegetable other = (Vegetable) obj;
-		return (this.quantity == other.getQuantity() && this.isOrganic == other.isOrganic());
+		return (this.quantity == other.quantity 
+				&& this.isOrganic == other.isOrganic);
 	}
-
+	
 }

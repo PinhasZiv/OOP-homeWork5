@@ -30,9 +30,13 @@ public class Ingredient {
 		this.units = units;
 	}
 
+	public void action() {
+		System.out.println("Add the " + this.name);
+	}
+	
 	@Override
 	public String toString() {
-		return "name: " + this.name + ", units: " + units;
+		return "name: " + this.name + ", units: " + this.units;
 	}
 
 	@Override
@@ -42,7 +46,7 @@ public class Ingredient {
 		if (!(obj instanceof Ingredient))
 			return false;
 		Ingredient other = (Ingredient) obj;
-		return (this.name == other.getName() && this.units == other.units);
+		return (this.name == other.name && this.units == other.units);
 	}
 
 }
