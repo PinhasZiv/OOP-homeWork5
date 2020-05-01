@@ -1,14 +1,17 @@
 package homeWork5;
 
-public class Ingredient {
+// Abstract class of general product in recipe
+public abstract class Ingredient {
 
 	private String name;
 	private String units;
 
+	// Default constructor
 	public Ingredient() {
 		this("oil", "cup");
 	}
 
+	// Fields constructor
 	public Ingredient(String name, String units) {
 		setName(name);
 		setUnits(units);
@@ -30,10 +33,6 @@ public class Ingredient {
 		this.units = units;
 	}
 
-	public void action() {
-		System.out.println("Add the " + this.name);
-	}
-	
 	@Override
 	public String toString() {
 		return "name: " + this.name + ", units: " + this.units;

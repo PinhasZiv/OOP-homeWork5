@@ -19,6 +19,7 @@ public class Protein extends Ingredient {
 		return quantity;
 	}
 
+	// Defines the quantity field (quantity > 0. default = 1)
 	public void setQuantity(int quantity) {
 		if (quantity <= 0) {
 			System.out.println("Quantity set to 1");
@@ -36,10 +37,13 @@ public class Protein extends Ingredient {
 		this.isReplacement = isReplacement;
 	}
 	
+	// A function that prints the component preparation
 	public void action() {
 		System.out.println("cook the " + this.getName());
 	}
 
+	// A function that prints the amount of protein added to the recipe instructions
+	// Depending on the type of protein (replacement or not)
 	public void add() {
 		if (this.isReplacement)
 			System.out.println(this.getQuantity() + " " + this.getUnits() + " of replacement " + this.getName());

@@ -5,10 +5,12 @@ public class Spice extends Ingredient {
 	private int quantity;
 	private boolean isSpicy;
 
+	// Default constructor
 	public Spice() {
 		this("chili", 2, "cup", false);
 	}
 
+	// Filds constructor
 	public Spice(String name, int quantity, String units, boolean isSpicy) {
 		super(name, units);
 		setQuantity(quantity);
@@ -19,6 +21,7 @@ public class Spice extends Ingredient {
 		return quantity;
 	}
 
+	// Defines the quantity field (quantity > 0. default = 1)
 	public void setQuantity(int quantity) {
 		if (quantity <= 0) {
 			System.out.println("Quantity set to 1");
@@ -36,10 +39,13 @@ public class Spice extends Ingredient {
 		this.isSpicy = isSpicy;
 	}
 
+	// A function that prints the component preparation
 	public void action() {
 		System.out.println("Add the " + this.getName());
 	}
 
+	// A function that prints the amount of spice added to the recipe instructions
+	// Depending on the type of spice (spicy or not)
 	public void add() {
 		if (this.isSpicy)
 			System.out.println(this.getQuantity() + " " + this.getUnits() + " of spicy " + this.getName());

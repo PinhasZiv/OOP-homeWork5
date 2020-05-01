@@ -5,10 +5,12 @@ public class Vegetable extends Ingredient {
 	private int quantity;
 	private boolean isOrganic;
 
+	// Default constructor
 	public Vegetable() {
 		this("tomato", 4, "units", true);
 	}
 
+	// Fields constructor
 	public Vegetable(String name, int quantity, String units, boolean isOrganic) {
 		super(name, units);
 		setQuantity(quantity);
@@ -19,8 +21,9 @@ public class Vegetable extends Ingredient {
 		return quantity;
 	}
 
+	// Defines the quantity field (quantity > 0. default = 1)
 	public void setQuantity(int quantity) {
-		if(quantity <= 0) {
+		if(quantity < 1) {
 			System.out.println("Quantity set to 1");
 			this.quantity = 1;
 		} else{
@@ -36,10 +39,13 @@ public class Vegetable extends Ingredient {
 		this.isOrganic = isOrganic;
 	}
 
+	// A function that prints the component preparation
 	public void action() {
 		System.out.println("Chop the " + this.getName() + "s");
 	}
 
+	// A function that prints the amount of vegetables added to the recipe instructions
+	// Depending on the type of vegetable (organic or not)
 	public void add() {
 		if(this.isOrganic) {
 			System.out.println(this.getQuantity() + " " + this.getUnits() + " of organic " + this.getName());
