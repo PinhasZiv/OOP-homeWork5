@@ -12,11 +12,33 @@ public class RUNNER {
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException, InputMismatchException {
+		
+		boolean isHealthy = false;
+		Ingredient[] recipe = new Ingredient[5];
+
+		while (!isHealthy) {
+			recipe = makeRecipe();
+			
+			try {
+				isHealthy = checkHealthiness(recipe);
+				isHealthy = true;
+			} catch (UnhealthyException e) {
+				System.out.println(e.getMessage());
+				System.out.println("you have to make a new recipe\n"
+						+ " *****************************************\n");
+			}
+		}
+		
+		runTasks(recipe);
+		
+		sc.close();
+}
+
+	private static Ingredient[] makeRecipe() {
 		int numOfIngredients = 0;
 		int ingChoice = 0;
 		boolean validRecipeSize = false;
-
-		// ************************ 2 ***********************
+		
 		while (!validRecipeSize) {
 			System.out.println("How many ingredients are in the recipe?");
 			try {
@@ -30,14 +52,9 @@ public class RUNNER {
 				System.out.println(e.getMessage());
 			} // TODO Check if we need to catch the super class of Exception
 		}
-		// ************************ 3 ***********************
 
 		Ingredient recipe[] = new Ingredient[numOfIngredients];
-
-		// ************************ 4 ***********************
-		boolean isHealthy = false;
-
-		while (!isHealthy) {
+		
 			for (int i = 0; i < recipe.length; i++) {
 				boolean validUserChoice = false;
 				while (!validUserChoice) {
@@ -95,8 +112,10 @@ public class RUNNER {
 						// Now we make sure that all fields was entered are valid.
 						validUserChoice = true;
 						int leftIngredient = (recipe.length - 1) - i;
+						
 						if (leftIngredient != 0)
 						System.out.println(leftIngredient + " ingredient left to choose");
+					
 					} catch (IllegalArgumentException e) {
 						System.out.println(e.getMessage());
 						System.out.println("Please try again");
@@ -110,31 +129,21 @@ public class RUNNER {
 					sc.nextLine();
 				}
 			}
-			try {
-				isHealthy = checkHealthiness(recipe);
-			} catch (UnhealthyException e) {
-				System.out.println(e.getMessage());
-				System.out.println("you have to make new recipe");
-			}
-		}
-		// ************************** 5 *********************
-
+			return recipe;
+	}
+	
+	private static void runTasks(Ingredient[] recipe) {
 		for (Ingredient ing : recipe) {
-
 			ing.add();
-
 		}
 
 		System.out.println();
 
-		// ************************** 6 *********************
-
 		for (Ingredient ing : recipe) {
 			ing.action();
 		}
-		sc.close();
 	}
-
+	
 	private static void printMessage() {
 		System.out.println("Hello.\n" + "What would you like to add to the salad?\n" + "Vegetable - press 1\n"
 				+ "Spice - prees 2\n" + "Protein - press 3");
