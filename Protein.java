@@ -1,49 +1,38 @@
-package homeWork5;
+package homeWork6;
+
+//Nir Avisror 311499958  Pinhas Ziv 315709139
 
 public class Protein extends Ingredient {
 
-	private int quantity;
 	private boolean isReplacement;
 
-	public Protein() {
+	public Protein() throws IllegalArgumentException {
 		this("protein", 100, "gram", true);
 	}
 	
-	public Protein(String name, int quantity, String units, boolean isReplacement) {
-		super(name, units);
-		setQuantity(quantity);
+	public Protein(String name, int quantity, String units, boolean isReplacement)throws IllegalArgumentException {
+		super(name, 3, units);
 		setReplacement(isReplacement);
 	}
-	
-	public int getQuantity() {
-		return quantity;
-	}
 
-	// Defines the quantity field (quantity > 0. default = 1)
-	public void setQuantity(int quantity) {
-		if (quantity <= 0) {
-			System.out.println("Quantity set to 1");
-			this.quantity = 1;
-		} else {
-			this.quantity = quantity;
-		}
-	}
 	
 	public boolean isReplacement() {
 		return isReplacement;
 	}
 
-	public void setReplacement(boolean isReplacement) {
+	protected void setReplacement(boolean isReplacement) throws IllegalArgumentException{
 		this.isReplacement = isReplacement;
 	}
 	
 	// A function that prints the component preparation
+	@Override
 	public void action() {
 		System.out.println("cook the " + this.getName());
 	}
 
 	// A function that prints the amount of protein added to the recipe instructions
 	// Depending on the type of protein (replacement or not)
+	@Override
 	public void add() {
 		if (this.isReplacement)
 			System.out.println(this.getQuantity() + " " + this.getUnits() + " of replacement " + this.getName());
@@ -53,7 +42,7 @@ public class Protein extends Ingredient {
 	
 	@Override
 	public String toString() {
-		return super.toString() + ", quantity: " + this.quantity + " replacement: " + this.isReplacement; 
+		return super.toString() + " replacement: " + this.isReplacement; 
 	}
 	
 	@Override
@@ -65,10 +54,6 @@ public class Protein extends Ingredient {
 		if(!(super.equals(obj)))
 			return false;
 		Protein other = (Protein) obj;
-		return (this.quantity == other.quantity && this.isReplacement == other.isReplacement);
+		return (this.isReplacement == other.isReplacement);
 	}
-
-	
-	// TODO
-	// add action, add.
 }

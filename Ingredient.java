@@ -1,19 +1,25 @@
-package homeWork5;
+package homeWork6;
+
+import java.util.InputMismatchException;
+
+//Nir Avisror 311499958  Pinhas Ziv 315709139
 
 // Abstract class of general product in recipe
 public abstract class Ingredient {
 
 	private String name;
+	private int quantity;
 	private String units;
 
 	// Default constructor
-	public Ingredient() {
-		this("oil", "cup");
+	public Ingredient() throws IllegalArgumentException {
+		this("oil", 3, "cup");
 	}
 
 	// Fields constructor
-	public Ingredient(String name, String units) {
+	public Ingredient(String name, int quantity, String units) throws IllegalArgumentException{
 		setName(name);
+		setQuantity(quantity);
 		setUnits(units);
 	}
 
@@ -21,21 +27,37 @@ public abstract class Ingredient {
 		return name;
 	}
 
-	public void setName(String name) {
+	protected void setName(String name) throws NullPointerException{
 		this.name = name;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	protected void setQuantity(int quantity) throws InputMismatchException{
+		if (quantity <= 0) {
+			throw new InputMismatchException("quantity must be greater than 0");
+		} else {
+			this.quantity = quantity;
+		}
 	}
 
 	public String getUnits() {
 		return units;
 	}
 
-	public void setUnits(String units) {
+	protected void setUnits(String units) throws NullPointerException {
 		this.units = units;
 	}
 
+	public abstract void action();
+
+	public abstract void add();
+
 	@Override
 	public String toString() {
-		return "name: " + this.name + ", units: " + this.units;
+		return "name: " + this.name + ", quantity" + this.quantity + ", units: " + this.units;
 	}
 
 	@Override
@@ -45,7 +67,7 @@ public abstract class Ingredient {
 		if (!(obj instanceof Ingredient))
 			return false;
 		Ingredient other = (Ingredient) obj;
-		return (this.name == other.name && this.units == other.units);
+		return (this.name == other.name && this.quantity == other.quantity && this.units == other.units);
 	}
 
 }

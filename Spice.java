@@ -1,51 +1,39 @@
-package homeWork5;
+package homeWork6;
+
+//Nir Avisror 311499958  Pinhas Ziv 315709139
 
 public class Spice extends Ingredient {
 
-	private int quantity;
 	private boolean isSpicy;
 
 	// Default constructor
-	public Spice() {
+	public Spice() throws IllegalArgumentException{
 		this("chili", 2, "cup", false);
 	}
 
-	// Filds constructor
-	public Spice(String name, int quantity, String units, boolean isSpicy) {
-		super(name, units);
-		setQuantity(quantity);
+	// Fields constructor
+	public Spice(String name, int quantity, String units, boolean isSpicy) throws IllegalArgumentException {
+		super(name, quantity, units);
 		setSpicy(isSpicy);
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	// Defines the quantity field (quantity > 0. default = 1)
-	public void setQuantity(int quantity) {
-		if (quantity <= 0) {
-			System.out.println("Quantity set to 1");
-			this.quantity = 1;
-		} else {
-			this.quantity = quantity;
-		}
 	}
 
 	public boolean isSpicy() {
 		return isSpicy;
 	}
 
-	public void setSpicy(boolean isSpicy) {
+	protected void setSpicy(boolean isSpicy) throws IllegalArgumentException {
 		this.isSpicy = isSpicy;
 	}
 
 	// A function that prints the component preparation
+	@Override
 	public void action() {
 		System.out.println("Add the " + this.getName());
 	}
 
 	// A function that prints the amount of spice added to the recipe instructions
 	// Depending on the type of spice (spicy or not)
+	@Override
 	public void add() {
 		if (this.isSpicy)
 			System.out.println(this.getQuantity() + " " + this.getUnits() + " of spicy " + this.getName());
@@ -55,7 +43,7 @@ public class Spice extends Ingredient {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", quanntity: " + this.quantity + " spicy: " + this.isSpicy;
+		return super.toString() + " spicy: " + this.isSpicy;
 	}
 
 	@Override
@@ -67,7 +55,7 @@ public class Spice extends Ingredient {
 		if (!(super.equals(obj)))
 			return false;
 		Spice other = (Spice) obj;
-		return (this.quantity == other.quantity && this.isSpicy == other.isSpicy);
+		return (this.isSpicy == other.isSpicy);
 	}
 
 }
