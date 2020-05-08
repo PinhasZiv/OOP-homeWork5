@@ -1,7 +1,5 @@
 package homeWork6;
 
-import java.util.InputMismatchException;
-
 //Nir Avisror 311499958  Pinhas Ziv 315709139
 
 // Abstract class of general product in recipe
@@ -17,7 +15,7 @@ public abstract class Ingredient {
 	}
 
 	// Fields constructor
-	public Ingredient(String name, int quantity, String units) throws IllegalArgumentException{
+	public Ingredient(String name, int quantity, String units) throws IllegalArgumentException {
 		setName(name);
 		setQuantity(quantity);
 		setUnits(units);
@@ -27,7 +25,7 @@ public abstract class Ingredient {
 		return name;
 	}
 
-	protected void setName(String name) throws NullPointerException{
+	protected void setName(String name) throws NullPointerException {
 		this.name = name;
 	}
 
@@ -35,9 +33,9 @@ public abstract class Ingredient {
 		return quantity;
 	}
 
-	protected void setQuantity(int quantity) throws InputMismatchException{
+	protected void setQuantity(int quantity) throws IllegalArgumentException {
 		if (quantity <= 0) {
-			throw new InputMismatchException("quantity must be greater than 0");
+			throw new IllegalArgumentException("quantity must be greater than 0");
 		} else {
 			this.quantity = quantity;
 		}

@@ -7,7 +7,7 @@ public class Spice extends Ingredient {
 	private boolean isSpicy;
 
 	// Default constructor
-	public Spice() throws IllegalArgumentException{
+	public Spice() throws IllegalArgumentException {
 		this("chili", 2, "cup", false);
 	}
 
