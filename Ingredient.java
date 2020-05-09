@@ -21,6 +21,8 @@ public abstract class Ingredient {
 		setUnits(units);
 	}
 
+	//TODO
+	// check if need to remove getters.
 	public String getName() {
 		return name;
 	}

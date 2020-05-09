@@ -11,7 +11,7 @@ public class RUNNER {
 
 	public static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) throws IOException, InputMismatchException {
+	public static void main(String[] args) throws IOException, InputMismatchException, Exception {
 
 		// TODO
 		// add comments.
@@ -56,7 +56,9 @@ public class RUNNER {
 				System.out.println(e.getMessage());
 			} catch (InputMismatchException e) {
 				System.out.println("You have to enter an integer. Please try again.");
-			} // TODO Check if we need to catch the super class of Exception
+			} catch (Exception e) {
+				System.out.println("General exception: " + e.getMessage());
+			}
 			sc.nextLine();
 		}
 
@@ -77,6 +79,8 @@ public class RUNNER {
 					System.out.println(e.getMessage());
 				} catch (InputMismatchException e) {
 					System.out.println("You have to enter an integer. Please try again.");
+				} catch (Exception e) {
+					System.out.println("General exception: " + e.getMessage());
 				}
 				sc.nextLine();
 				// TODO Check if we need to catch the super class of Exception
@@ -96,9 +100,14 @@ public class RUNNER {
 					System.out.println("How much to add from this product?");
 					tempQuantity = sc.nextInt();
 
+					// TODO
+					// check if need to move this to setQuantity.
 					if (tempQuantity < 1)
 						throw new IOException("You can't enter less then 1 ingredient");
 
+					// TODO
+					// need to check about the boolean
+					// (we used nextInt to get from user. maybe we need to use: next()).
 					switch (ingChoice) {
 					case 1:
 						Vegetable tempVeg = new Vegetable(tempName, tempQuantity, tempUnits, false);
@@ -132,9 +141,14 @@ public class RUNNER {
 					i--;
 				} catch (InputMismatchException e) {
 					System.out.println("You have to enter an integer. please try again");
+					i--;
 				} catch (NullPointerException | IOException e) {
 					System.out.println(e.getMessage());
 					System.out.println("Please try again");
+					i--;
+				} catch (Exception e) {
+					System.out.println("General exception: " + e.getMessage());
+					i--;
 				}
 				sc.nextLine();
 			}
