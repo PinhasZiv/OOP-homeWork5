@@ -4,6 +4,8 @@ package homeWork6;
 
 public class UnhealthyException extends Exception {
 
+	// TODO
+	//check what is this static final
 	private static final long serialVersionUID = 1L;
 
 	public UnhealthyException() {

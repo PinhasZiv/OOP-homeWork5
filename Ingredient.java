@@ -1,8 +1,11 @@
 package homeWork6;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
+
 //Nir Avisror 311499958  Pinhas Ziv 315709139
 
-// Abstract class of general product in recipe
+// Abstract class of general ingredient in recipe
 public abstract class Ingredient {
 
 	private String name;
@@ -10,24 +13,22 @@ public abstract class Ingredient {
 	private String units;
 
 	// Default constructor
-	public Ingredient() throws IllegalArgumentException {
+	public Ingredient() throws IllegalArgumentException, IOException {
 		this("oil", 3, "cup");
 	}
 
 	// Fields constructor
-	public Ingredient(String name, int quantity, String units) throws IllegalArgumentException {
+	public Ingredient(String name, int quantity, String units) throws IllegalArgumentException, NullPointerException {
 		setName(name);
 		setQuantity(quantity);
 		setUnits(units);
 	}
 
-	//TODO
-	// check if need to remove getters.
 	public String getName() {
 		return name;
 	}
 
-	protected void setName(String name) throws NullPointerException {
+	protected void setName(String name) throws IllegalArgumentException, NullPointerException {
 		this.name = name;
 	}
 
@@ -35,9 +36,10 @@ public abstract class Ingredient {
 		return quantity;
 	}
 
-	protected void setQuantity(int quantity) throws IllegalArgumentException {
+	// Set of field quantity. throws InputMismatchException if quantity <= 0.
+	protected void setQuantity(int quantity) throws IllegalArgumentException, InputMismatchException , NullPointerException{
 		if (quantity <= 0) {
-			throw new IllegalArgumentException("quantity must be greater than 0");
+			throw new InputMismatchException("quantity must be greater than 0");
 		} else {
 			this.quantity = quantity;
 		}
@@ -47,7 +49,7 @@ public abstract class Ingredient {
 		return units;
 	}
 
-	protected void setUnits(String units) throws NullPointerException {
+	protected void setUnits(String units) throws IllegalArgumentException, NullPointerException {
 		this.units = units;
 	}
 

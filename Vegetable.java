@@ -7,12 +7,12 @@ public class Vegetable extends Ingredient {
 	private boolean isOrganic;
 
 	// Default constructor
-	public Vegetable() throws IllegalArgumentException {
+	public Vegetable() throws IllegalArgumentException , NullPointerException {
 		this("tomato", 4, "units", true);
 	}
 
 	// Fields constructor
-	public Vegetable(String name, int quantity, String units, boolean isOrganic) throws IllegalArgumentException {
+	public Vegetable(String name, int quantity, String units, boolean isOrganic) throws IllegalArgumentException, NullPointerException {
 		super(name, quantity, units);
 		setOrganic(isOrganic);
 	}
@@ -21,11 +21,11 @@ public class Vegetable extends Ingredient {
 		return isOrganic;
 	}
 
-	protected void setOrganic(boolean isOrganic) throws IllegalArgumentException {
+	protected void setOrganic(boolean isOrganic) throws IllegalArgumentException, NullPointerException {
 		this.isOrganic = isOrganic;
 	}
 
-	// A function that prints the component preparation
+	// A function that prints the ingredient preparation
 	@Override
 	public void action() {
 		System.out.println("Chop the " + this.getName() + "s");

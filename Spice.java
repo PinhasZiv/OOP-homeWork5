@@ -7,12 +7,13 @@ public class Spice extends Ingredient {
 	private boolean isSpicy;
 
 	// Default constructor
-	public Spice() throws IllegalArgumentException {
+	public Spice() throws IllegalArgumentException, NullPointerException {
 		this("chili", 2, "cup", false);
 	}
 
 	// Fields constructor
-	public Spice(String name, int quantity, String units, boolean isSpicy) throws IllegalArgumentException {
+	public Spice(String name, int quantity, String units, boolean isSpicy)
+			throws IllegalArgumentException, NullPointerException {
 		super(name, quantity, units);
 		setSpicy(isSpicy);
 	}
@@ -21,17 +22,17 @@ public class Spice extends Ingredient {
 		return isSpicy;
 	}
 
-	protected void setSpicy(boolean isSpicy) throws IllegalArgumentException {
+	protected void setSpicy(boolean isSpicy) throws IllegalArgumentException, NullPointerException {
 		this.isSpicy = isSpicy;
 	}
 
-	// A function that prints the component preparation
+	// A function that prints the ingredient preparation
 	@Override
 	public void action() {
 		System.out.println("Add the " + this.getName());
 	}
 
-	// A function that prints the amount of spice added to the recipe instructions
+	// A function that prints the amount of spices added to the recipe instructions
 	// Depending on the type of spice (spicy or not)
 	@Override
 	public void add() {

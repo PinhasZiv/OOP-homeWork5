@@ -6,11 +6,13 @@ public class Protein extends Ingredient {
 
 	private boolean isReplacement;
 
-	public Protein() throws IllegalArgumentException {
+	// Default constructor
+	public Protein() throws IllegalArgumentException , NullPointerException {
 		this("protein", 100, "gram", true);
 	}
 
-	public Protein(String name, int quantity, String units, boolean isReplacement) throws IllegalArgumentException {
+	// Fields constructor
+	public Protein(String name, int quantity, String units, boolean isReplacement) throws IllegalArgumentException , NullPointerException {
 		super(name, 3, units);
 		setReplacement(isReplacement);
 	}
@@ -19,7 +21,7 @@ public class Protein extends Ingredient {
 		return isReplacement;
 	}
 
-	protected void setReplacement(boolean isReplacement) throws IllegalArgumentException {
+	protected void setReplacement(boolean isReplacement) throws IllegalArgumentException , NullPointerException {
 		this.isReplacement = isReplacement;
 	}
 
