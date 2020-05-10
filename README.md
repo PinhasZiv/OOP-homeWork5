@@ -4,7 +4,7 @@ Nir Avisror
 Pinhas Ziv
 
 Our function enable the user to create a recipe, by using some ingredients.
-Our function have a 3 classes of ingredient: Vegetable, Spice and Protien when each of them has functions that can be applied on them.
+Our function have a 3 classes of ingredient: Vegetable, Spice and Protien, when each of them has functions that can be applied on them.
 
 
 Some comments about the code:

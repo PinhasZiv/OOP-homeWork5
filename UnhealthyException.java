@@ -2,10 +2,9 @@ package homeWork6;
 
 //Nir Avisror 311499958  Pinhas Ziv 315709139
 
+// special exception for an unhealthy recipe.
 public class UnhealthyException extends Exception {
 
-	// TODO
-	//check what is this static final
 	private static final long serialVersionUID = 1L;
 
 	public UnhealthyException() {

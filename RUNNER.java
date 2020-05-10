@@ -94,8 +94,8 @@ public class RUNNER {
 				}
 				sc.nextLine(); // clean buffer
 			}
-			
-			// initialize temp variables for the ingredient's fields. 
+
+			// initialize temp variables for the ingredient's fields.
 			String tempName = null, tempUnits = null;
 			int tempQuantity = 0;
 			boolean validVeriable = false;
@@ -112,10 +112,10 @@ public class RUNNER {
 					sc.nextLine(); // clean buffer
 				}
 			}
-			
+
 			validVeriable = false;
 			// try to get values of ingredient by while loop to make sure that
-						// the values that was entered by user are valid.
+			// the values that was entered by user are valid.
 			while (!validVeriable) {
 				try {
 					System.out.println("What units of measure to use?");
@@ -126,67 +126,67 @@ public class RUNNER {
 					sc.nextLine(); // clean buffer
 				}
 			}
-			
+
 			validVeriable = false;
 			// try to get values of ingredient by while loop to make sure that
-						// the values that was entered by user are valid.
+			// the values that was entered by user are valid.
 			while (!validVeriable) {
-					try {
-						System.out.println("How much to add from this product?");
-						tempQuantity = sc.nextInt();
-						// check if quantity that entered by user < 1
-						// and throw IOException (input output Exception).
-						if (tempQuantity < 1)
-							throw new IOException("You can't enter less then 1 ingredient");
-						validVeriable = true;
-					} catch (NullPointerException | InputMismatchException e) {
-						System.out.println("you have to enter an integer for the quantity.\nPlease try again.");
-					} catch (IOException e) {
-						System.out.println(e.getMessage());
-					}
-					sc.nextLine(); // clean buffer
+				try {
+					System.out.println("How much to add from this product?");
+					tempQuantity = sc.nextInt();
+					// check if quantity that entered by user < 1
+					// and throw IOException (input output Exception).
+					if (tempQuantity < 1)
+						throw new IOException("You can't enter less then 1 ingredient");
+					validVeriable = true;
+				} catch (NullPointerException | InputMismatchException e) {
+					System.out.println("you have to enter an integer for the quantity.\nPlease try again.");
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
 				}
-				// using switch for the fields that unique to each ingredient
-				// and initialize new object by user choice.
-				validVeriable = false;
-				while (!validVeriable) {
-					try {
-						switch (ingChoice) {
-						case 1:
-							Vegetable tempVeg = new Vegetable(tempName, tempQuantity, tempUnits, false);
-							System.out.println("Is the vegetable organic? (0 = yes, else = no)");
-							tempVeg.setOrganic(userChoice(sc.nextInt()));
-							recipe[i] = tempVeg;
-							break;
-						case 2:
-							Spice tempSip = new Spice(tempName, tempQuantity, tempUnits, false);
-							System.out.println("Is the spice spicy? (0 = yes, else = no)");
-							tempSip.setSpicy(userChoice(sc.nextInt()));
-							recipe[i] = tempSip;
-							break;
-						case 3:
-							Protein tempPro = new Protein(tempName, tempQuantity, tempUnits, false);
-							System.out.println("Is the protein is replacement? (0 = yes, else = no)");
-							tempPro.setReplacement(userChoice(sc.nextInt()));
-							recipe[i] = tempPro;
-							break;
-						}
-						// print to console the number of ingredient that left to choose.
-						int leftIngredient = (recipe.length - 1) - i;
-						if (leftIngredient != 0)
-							System.out.println(leftIngredient + " ingredient left to choose");
-						validVeriable = true;
-					} catch (IllegalArgumentException e) {
-						System.out.println(e.getMessage());
-						System.out.println("Please try again");
-					} catch (InputMismatchException e) {
-						System.out.println("You have to enter an integer. please try again");
-					} catch (Exception e) {
-						System.out.println("General exception: " + e.getMessage());
-					}
-					 sc.nextLine(); // clean buffer.
-				}
+				sc.nextLine(); // clean buffer
 			}
+			// using switch for the fields that unique to each ingredient
+			// and initialize new object by user choice.
+			validVeriable = false;
+			while (!validVeriable) {
+				try {
+					switch (ingChoice) {
+					case 1:
+						Vegetable tempVeg = new Vegetable(tempName, tempQuantity, tempUnits, false);
+						System.out.println("Is the vegetable organic? (0 = yes, else = no)");
+						tempVeg.setOrganic(userChoice(sc.nextInt()));
+						recipe[i] = tempVeg;
+						break;
+					case 2:
+						Spice tempSip = new Spice(tempName, tempQuantity, tempUnits, false);
+						System.out.println("Is the spice spicy? (0 = yes, else = no)");
+						tempSip.setSpicy(userChoice(sc.nextInt()));
+						recipe[i] = tempSip;
+						break;
+					case 3:
+						Protein tempPro = new Protein(tempName, tempQuantity, tempUnits, false);
+						System.out.println("Is the protein is replacement? (0 = yes, else = no)");
+						tempPro.setReplacement(userChoice(sc.nextInt()));
+						recipe[i] = tempPro;
+						break;
+					}
+					// print to console the number of ingredient that left to choose.
+					int leftIngredient = (recipe.length - 1) - i;
+					if (leftIngredient != 0)
+						System.out.println(leftIngredient + " ingredient left to choose");
+					validVeriable = true;
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
+					System.out.println("Please try again");
+				} catch (InputMismatchException e) {
+					System.out.println("You have to enter an integer. please try again");
+				} catch (Exception e) {
+					System.out.println("General exception: " + e.getMessage());
+				}
+				sc.nextLine(); // clean buffer.
+			}
+		}
 		return recipe;
 	}
 
